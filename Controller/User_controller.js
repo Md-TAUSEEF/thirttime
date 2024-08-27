@@ -85,24 +85,21 @@ const loginUser = async (req, res, next) => {
 
 //<============LogoutUser============================>
 
-    const Logout=async(req,res,next)=>{
-        try{
-
-           res.status(200).cookie("token", "", {
-                  expires: new Date(0), // Set to a past date to ensure cookie is expired
-                  httpOnly: true,
-                  secure: process.env.NODE_ENV === 'production', 
-                  sameSite: 'Strict',
-             }).json({
-                msg: "Logout successfully",
-             success: true,
-            });
-
-
-        }catch(error){
-            next(new ErrorResponse('logut user error', 500));
-        }
-    }
+const Logout = async (req, res, next) => {
+  try {
+    res.status(200).cookie('token', '', {
+      expires: new Date(0), // Set to a past date
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', 
+      sameSite: 'Strict',
+    }).json({
+      msg: 'Logout successfully',
+      success: true,
+    });
+  } catch (error) {
+    next(new ErrorResponse('Logout user error', 500));
+  }
+};
 
 
 //<==============GetMyprofile=====================>
