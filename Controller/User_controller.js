@@ -88,7 +88,7 @@ const loginUser = async (req, res, next) => {
 const Logout = async (req, res, next) => {
   try {
     res.status(200).cookie('token', '', {
-      expires: new Date(0), // Set to a past date
+      expires: new Date(0), 
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production', 
       sameSite: 'Strict',
