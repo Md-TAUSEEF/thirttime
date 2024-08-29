@@ -87,15 +87,18 @@ const loginUser = async (req, res, next) => {
 
 const Logout = async (req, res, next) => {
   try {
-    res.status(200).cookie('token', '', {
-      expires: new Date(0), 
-      httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', 
-      sameSite: 'Strict',
-    }).json({
-      msg: 'Logout successfully',
-      success: true,
-    });
+    res
+      .status(200)
+      .cookie('token', '', {
+        expires: new Date(Date.now()), 
+        httpOnly: true, 
+        secure: process.env.NODE_ENV === 'production', 
+        sameSite: 'Strict', 
+      })
+      .json({
+        success: true,
+        message: 'User Logged Out Successfully',
+      });
   } catch (error) {
     next(new ErrorResponse('Logout user error', 500));
   }
